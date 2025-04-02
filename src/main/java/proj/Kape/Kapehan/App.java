@@ -14,7 +14,7 @@ public class App extends Application {
         btn.setOnAction(event -> btn.setText("Clicked!"));
 
         StackPane root = new StackPane(btn);
-        Scene scene = new Scene(root, 300, 200);
+        Scene scene = new Scene(root, 1024, 720);
         stage.setScene(scene);
         stage.setTitle("TestFX Example");
         stage.show();
