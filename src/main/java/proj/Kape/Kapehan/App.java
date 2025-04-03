@@ -1,26 +1,27 @@
 package proj.Kape.Kapehan;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
     @Override
     public void start(Stage stage) {
-        Button btn = new Button("Click Me");
-        btn.setId("btnClick"); // Important for TestFX
-        btn.setOnAction(event -> btn.setText("Clicked!"));
-
-        StackPane root = new StackPane(btn);
-        Scene scene = new Scene(root, 1024, 720);
-        stage.setScene(scene);
-        stage.setTitle("TestFX Example");
-        stage.show();
+    	try {
+    		FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/scenes/login.fxml"));
+        	Parent root = loginLoader.load();
+            Scene login = new Scene(root, 600, 400);
+            stage.setScene(login);
+            stage.setTitle("TestFX Example");
+            stage.show();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

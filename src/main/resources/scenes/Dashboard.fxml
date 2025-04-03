@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="menuList" layoutY="576.0" prefHeight="144.0" prefWidth="966.0">
+         <children>
+            <Button fx:id="total" mnemonicParsing="false" text="Total" />
+            <Button fx:id="MOP" mnemonicParsing="false" text="Mode Of Payment" />
+            <Button fx:id="receipt" mnemonicParsing="false" text="Receipt" />
+            <Button fx:id="voidMenu" mnemonicParsing="false" text="Void" />
+            <Button fx:id="logout" mnemonicParsing="false" text="Logout" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
