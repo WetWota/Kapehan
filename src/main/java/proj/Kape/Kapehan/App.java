@@ -6,10 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import proj.Kape.Kapehan.controllers.LoginController;
+
 public class App extends Application {
+	LoginController loginController = new LoginController();
     @Override
     public void start(Stage stage) {
     	try {
+    		loginController.setStage(stage);
     		FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/scenes/login.fxml"));
         	Parent root = loginLoader.load();
             Scene login = new Scene(root, 600, 400);
