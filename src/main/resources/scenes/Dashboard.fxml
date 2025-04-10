@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles/Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.Kape.Kapehan.controllers.DashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1366.0" stylesheets="@styles/Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.Kape.Kapehan.controllers.DashboardController">
    <children>
-      <HBox fx:id="menuList" layoutX="14.0" layoutY="587.0" prefHeight="127.0" prefWidth="710.0">
+      <HBox fx:id="menuList" layoutX="14.0" layoutY="638.0" prefHeight="76.0" prefWidth="941.0">
          <children>
             <Button fx:id="total" mnemonicParsing="false" text="Total" />
             <Button fx:id="MOP" mnemonicParsing="false" text="Mode Of Payment" />
@@ -24,7 +24,7 @@
             <Button fx:id="logoutBTN" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
          </children>
       </HBox>
-      <GridPane layoutX="1011.0" layoutY="548.0" prefHeight="90.0" prefWidth="239.0">
+      <GridPane layoutX="1054.0" layoutY="575.0" prefHeight="90.0" prefWidth="239.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,21 +38,24 @@
             <Label text="Cash" />
             <Label text="Total" GridPane.rowIndex="1" />
             <Label text="Change" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="cashField" onAction="#handleSubmit" GridPane.columnIndex="1" />
+            <TextField fx:id="totalField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="changeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <ImageView fitHeight="127.0" fitWidth="113.0" layoutX="1011.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="127.0" fitWidth="113.0" layoutX="1076.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/logo.png" />
+            <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="1108.0" layoutY="53.0" prefHeight="49.0" prefWidth="142.0" text="AudaciTea">
+      <Label layoutX="1196.0" layoutY="61.0" prefHeight="49.0" prefWidth="142.0" text="AudaciTea">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Pane layoutX="1008.0" layoutY="147.0" prefHeight="401.0" prefWidth="258.0" />
+      <Pane fx:id="orderPane" layoutX="1046.0" layoutY="155.0" prefHeight="401.0" prefWidth="313.0" />
+      <Pane fx:id="itemListPane" layoutX="14.0" layoutY="14.0" prefHeight="606.0" prefWidth="1020.0" />
+      <Button fx:id="submitBTN" layoutX="1241.0" layoutY="676.0" mnemonicParsing="false" onAction="#handleSubmit" text="submit" />
+      <Label fx:id="alertLabel" layoutX="1076.0" layoutY="680.0" text="Alert Label" />
    </children>
 </AnchorPane>

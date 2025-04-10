@@ -17,12 +17,12 @@ public class ProductGridTest extends Application {
     public void start(Stage primaryStage) {
         GridPane productGrid = new GridPane();
         productGrid.setHgap(2);
-        productGrid.setVgap(10);  
+        productGrid.setVgap(5);  
         
         // Initialize your controller
         new ProductGridController(productGrid);
 
-        Scene scene = new Scene(productGrid, 800, 600);
+        Scene scene = new Scene(productGrid, 1280, 720);
         
         primaryStage.setTitle("Product Grid Test");
         primaryStage.setScene(scene);

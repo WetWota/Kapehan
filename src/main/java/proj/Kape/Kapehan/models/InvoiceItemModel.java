@@ -9,7 +9,8 @@ public class InvoiceItemModel {
     private String type;
     private int quantity;
     private BigDecimal subtotal;
-
+    private String itemName;
+    private BigDecimal price;
     // Constructors
     public InvoiceItemModel() {}
 
@@ -29,6 +30,8 @@ public class InvoiceItemModel {
     public String getType() { return type; }
     public int getQuantity() { return quantity; }
     public BigDecimal getSubtotal() { return subtotal; }
+    public String getItemName() { return itemName; }
+    public BigDecimal getPrice() { return price; }
 
     // Setters
     public void setItemId(int itemId) { this.itemId = itemId; }
@@ -37,7 +40,8 @@ public class InvoiceItemModel {
     public void setSize(String type) { this.type = type; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public void setSubtotal(BigDecimal subtotal) { this.subtotal = subtotal; }
-
+    public void setItemName(String itemName) { this.itemName = itemName; }
+    public void setPrice(BigDecimal price) { this.price = price; }
     @Override
     public String toString() {
         return "InvoiceItem {" +

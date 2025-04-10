@@ -12,11 +12,13 @@ import java.util.List;
 public class ProductGridController {
     private final ProductService productService;
     private final GridPane productGrid;
+    private final DashboardController dashboardController;
     private static final int COLUMNS = 4;
 
-    public ProductGridController(GridPane productGrid) {
+    public ProductGridController(GridPane productGrid, DashboardController dashboardController) {
         this.productGrid = productGrid;
         this.productService = new ProductService();
+        this.dashboardController = dashboardController;
         initializeGrid();
     }
 
@@ -32,11 +34,10 @@ public class ProductGridController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/ItemPane.fxml"));
                 Pane itemPane = loader.load();
                 
-                // Get the controller and set product data
                 ItemMenuController controller = loader.getController();
                 controller.setProductData(products.get(i));
+                controller.setDashboardController(dashboardController);
                 
-                // Calculate grid position
                 int row = i / COLUMNS;
                 int column = i % COLUMNS;
                 

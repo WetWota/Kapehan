@@ -22,7 +22,7 @@ public class SceneManager {
             Parent root = sceneLoader.load();
             
             if (primaryStage != null) {
-            	Scene newScene = new Scene(root, 1280, 720);
+            	Scene newScene = new Scene(root, 1366, 728);
                 primaryStage.setScene(newScene);
             } else {
                 System.out.println("❌ Stage is null when switching Dashboard");
