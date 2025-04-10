@@ -10,9 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import proj.Kape.Kapehan.service.AuthService;
+import proj.Kape.Kapehan.utils.SceneManager;
 public class LoginController {
 	private final AuthService authService = new AuthService();
-	private static Stage stage;
 	
 	@FXML TextField usernameField;
 	@FXML TextField passwordField;
@@ -29,27 +29,16 @@ public class LoginController {
         passwordField.requestFocus();
     }
 	
-	public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-	
 	private void loadDashboard() {
 		try {
-			FXMLLoader dashboard = new FXMLLoader(getClass().getResource("/scenes/Dashboard.fxml"));
-			Parent newScene = dashboard.load();
-			Scene scene = new Scene(newScene, 1280, 720);
-			if (stage != null) {
-                stage.setScene(scene);
-            } else {
-                System.out.println("❌ Stage is null when switching scene");
-            }
+			SceneManager.switchDashboard();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@FXML
-	private void handleLogin() {
+	private void handleLogin(ActionEvent event) {
 		try {
             String username = usernameField.getText().trim();
             String password = passwordField.getText().trim();

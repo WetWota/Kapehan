@@ -7,21 +7,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import proj.Kape.Kapehan.controllers.LoginController;
+import proj.Kape.Kapehan.utils.SceneManager;
 
 public class App extends Application {
 	LoginController loginController = new LoginController();
     @Override
-    public void start(Stage stage) {
+    public void start(Stage primaryStage) {
+    	SceneManager.setStage(primaryStage);
+    	
     	try {
-    		loginController.setStage(stage);
-    		FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/scenes/login.fxml"));
+    		FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/scenes/Login.fxml"));
         	Parent root = loginLoader.load();
             Scene login = new Scene(root, 600, 400);
-            stage.setScene(login);
-            stage.setTitle("TestFX Example");
-            stage.show();
+            primaryStage.setScene(login);
+            primaryStage.show();
     	} catch (Exception e) {
     		e.printStackTrace();
+            System.out.println("❌ Failed to load initial scene");
     	}
     }
 
