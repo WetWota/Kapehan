@@ -27,6 +27,7 @@ public class DashboardController {
 	@FXML private TextField totalField;
 	@FXML private TextField changeField;
 	@FXML private Button logoutBTN;
+	@FXML private Button submitBTN;
 	@FXML private Label alertLabel;
 	
 	@FXML
@@ -120,6 +121,7 @@ public class DashboardController {
 			} else {
 				Double change = cash - total;
 				changeField.setText(String.valueOf(change));
+				submitBTN.requestFocus();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
