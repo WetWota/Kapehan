@@ -15,7 +15,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1366.0" stylesheets="@styles/Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.Kape.Kapehan.controllers.DashboardController">
    <children>
-      <Pane layoutX="-1.0" layoutY="-3.0" prefHeight="735.0" prefWidth="1374.0" style="-fx-background-color: lightgray;" />
       <HBox fx:id="menuList" layoutX="14.0" layoutY="638.0" prefHeight="76.0" prefWidth="941.0">
          <children>
             <Button fx:id="total" mnemonicParsing="false" text="Total" />
@@ -49,12 +48,12 @@
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="1196.0" layoutY="37.0" prefHeight="49.0" prefWidth="142.0" text="AudaciTea">
+      <Label layoutX="1196.0" layoutY="61.0" prefHeight="49.0" prefWidth="142.0" text="AudaciTea">
          <font>
-            <Font name="Palatino Linotype Bold Italic" size="29.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Pane fx:id="orderPane" layoutX="1046.0" layoutY="155.0" prefHeight="401.0" prefWidth="313.0" style="-fx-background-color: f0f0f0;" />
+      <Pane fx:id="orderPane" layoutX="1046.0" layoutY="155.0" prefHeight="401.0" prefWidth="313.0" />
       <Pane fx:id="itemListPane" layoutX="14.0" layoutY="14.0" prefHeight="606.0" prefWidth="1020.0" />
       <Button fx:id="submitBTN" layoutX="1241.0" layoutY="676.0" mnemonicParsing="false" onAction="#handleSubmit" text="submit" />
       <Label fx:id="alertLabel" layoutX="1076.0" layoutY="680.0" text="Alert Label" />

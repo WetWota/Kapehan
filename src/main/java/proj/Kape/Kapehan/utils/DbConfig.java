@@ -8,7 +8,7 @@ import java.util.Base64;
 public class DbConfig {
     private static final String dbURL = "jdbc:mysql://localhost:3306/kapehan";
     private static final String dbUser = "root";
-    private static final String encodedPass = "UGF1bGFzYW50b3NAMDgyNjAz"; // Base64 encoded password
+    private static final String encodedPass = "SEFIQWdvYXRtaWxrMTIzIQ=="; // Base64 encoded password
 
     public static Connection getConnection() throws SQLException {
         String dbPass = decodeBase64Password(encodedPass);

@@ -16,7 +16,6 @@ public class AuthService {
 		String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 		String sqlAccount = "INSERT INTO account_data (username, password, role) VALUES (?, ?, ?)";
 		
-		
 		try (Connection conn = DbConfig.getConnection()) {
 			conn.setAutoCommit(false); 
 			try (PreparedStatement stmt = conn.prepareStatement(sqlAccount, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -24,7 +23,6 @@ public class AuthService {
 				stmt.setString(2, hashedPassword);
 				stmt.setString(3, role);
 				int affectedRows = stmt.executeUpdate();
-		
 				
 				if (affectedRows == 0) {
 					System.out.println("[ERROR] Insert into account_data failed.");
@@ -56,8 +54,7 @@ public class AuthService {
         try (Connection conn = DbConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery(); 
-            
+            ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 String storedHash = rs.getString("password");
@@ -144,4 +141,3 @@ public class AuthService {
         return false;
     }
 }
-
