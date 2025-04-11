@@ -111,6 +111,22 @@ public class DashboardController {
     }
 	
 	@FXML
+	private void calculate(ActionEvent event) {
+		try {
+			Double cash = Double.parseDouble(cashField.getText());
+			Double total = Double.parseDouble(totalField.getText());
+			if(total > cash) {
+				showAlert("invalid");
+			} else {
+				Double change = cash - total;
+				changeField.setText(String.valueOf(change));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
 	private void handleSubmit(ActionEvent event) {
 		try {
 			Double cash = Double.parseDouble(cashField.getText());
