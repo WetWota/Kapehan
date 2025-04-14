@@ -6,13 +6,17 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import proj.Kape.Kapehan.models.InvoiceItemModel;
 import proj.Kape.Kapehan.utils.SceneManager;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class DashboardController {
 	
@@ -155,6 +159,21 @@ public class DashboardController {
 	
     private void showAlert(String message) {
     	alertLabel.setText(message);
+    }
+    
+    @FXML
+    private void productManager(ActionEvent event) {
+    	try {
+        	Stage productManager = new Stage();
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/ProductPane.fxml"));
+        	Parent root = loader.load();
+        	Scene login = new Scene(root);
+    		productManager.setScene(login);
+            productManager.setTitle("Void invoice");
+            productManager.show();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
 	
 	@FXML
