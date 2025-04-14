@@ -36,7 +36,7 @@
             <Label text="Cash" />
             <Label text="Total" GridPane.rowIndex="1" />
             <Label text="Change" GridPane.rowIndex="2" />
-            <TextField fx:id="cashField" onAction="#handleSubmit" GridPane.columnIndex="1" />
+            <TextField fx:id="cashField" onAction="#calculate" GridPane.columnIndex="1" />
             <TextField fx:id="totalField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="changeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
