@@ -28,6 +28,9 @@
 #total {
     -fx-background-color: #3498db;
 }
+#CompDets{
+        -fx-wrap-text: true;
+}
 
 #MOP {
     -fx-background-color: #2ecc71;

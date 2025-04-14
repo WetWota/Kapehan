@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,10 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.Kape.Kapehan.controllers.LoginController">
    <children>
-      <Pane layoutX="78.0" layoutY="75.0" prefHeight="250.0" prefWidth="444.0">
+      <Pane layoutX="85.0" layoutY="98.0" prefHeight="250.0" prefWidth="444.0">
          <children>
             <GridPane layoutX="108.0" layoutY="99.0" prefHeight="90.0" prefWidth="225.0">
               <columnConstraints>
@@ -36,12 +37,17 @@
             </GridPane>
             <Button fx:id="loginBTN" layoutX="152.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
             <Button fx:id="registerBTN" layoutX="222.0" layoutY="181.0" mnemonicParsing="false" text="Register" />
-            <Text layoutX="119.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Audacitea" textAlignment="CENTER" wrappingWidth="203.0625">
+            <Text layoutX="135.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AudaciTea" textAlignment="CENTER" wrappingWidth="283.0625">
                <font>
-                  <Font name="Brush Script MT Italic" size="52.0" />
+                  <Font name="Palatino Linotype Bold" size="52.0" />
                </font>
             </Text>
             <Label fx:id="errorLabel" alignment="CENTER" layoutX="149.0" layoutY="78.0" prefHeight="17.0" prefWidth="144.0" text="errorLabel" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="-72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
