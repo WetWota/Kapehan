@@ -8,11 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import proj.Kape.Kapehan.controllers.DashboardController.ProductUpdateListener;
 import proj.Kape.Kapehan.models.ProductModel;
 import proj.Kape.Kapehan.service.ProductService;
 
 public class ProductPaneController {
 	private final ProductService productService = new ProductService();
+	
+	private ProductUpdateListener productUpdateListener;
 	
 	@FXML private TextField idField;
 	@FXML private TextField nameField;
@@ -21,6 +24,7 @@ public class ProductPaneController {
 	@FXML private Label idLabel;
 	@FXML private ToggleButton editToggle;
 	@FXML private Button submitBTN;
+	@FXML private Label statusLabel;
 	
 	private boolean editMode = false;
 	
@@ -28,6 +32,11 @@ public class ProductPaneController {
 	private void initialize() {
 		editOff();
 	}
+	
+	public void setProductUpdateListener(ProductUpdateListener listener) {
+	    this.productUpdateListener = listener;
+	}
+	
 	@FXML
 	private void idFieldAction() {
 		nameField.requestFocus();
@@ -44,6 +53,8 @@ public class ProductPaneController {
 			handleEdit();
 		} else {
 			handleAdd();
+			nameField.setText(null);
+			priceField.setText(null);
 		}
 	}
 	
@@ -55,6 +66,10 @@ public class ProductPaneController {
 			
 			ProductModel productModel = new ProductModel(0, name, 'd', price );
 			productService.addProduct(productModel);
+			statusLabel.setText(name + " has been added");
+			if (productUpdateListener != null) {
+	            productUpdateListener.onProductUpdated();
+	        }
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -62,17 +77,26 @@ public class ProductPaneController {
 	
 	@FXML
 	private void handleEdit() {
-		
-		
-		
-		String name = nameField.getText().trim();
-		BigDecimal price = BigDecimal.valueOf(Double.parseDouble(priceField.getText().trim()));
+		try {
+			int id = Integer.parseInt(idField.getText().trim());
+			String name = nameField.getText().trim();
+			BigDecimal price = BigDecimal.valueOf(Double.parseDouble(priceField.getText().trim()));
+			ProductModel productModel = new ProductModel(id, name, 'd', price);
+			productService.updateProduct(productModel);
+			statusLabel.setText("Item has been updated to " + name);	
+			if (productUpdateListener != null) {
+	            productUpdateListener.onProductUpdated();
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
 	private void BTNAction(ActionEvent event) {
 		if(!editMode) {
 			handleAdd();
+			
 		} else {
 			handleEdit();
 		}

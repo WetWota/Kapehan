@@ -169,6 +169,10 @@ public class DashboardController {
         	Stage productManager = new Stage();
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/ProductPane.fxml"));
         	Parent root = loader.load();
+        	ProductPaneController productPaneController = loader.getController();
+            productPaneController.setProductUpdateListener(() -> {
+                setupMenuListGrid(); // Refresh the product grid
+            });
         	Scene login = new Scene(root);
     		productManager.setScene(login);
             productManager.setTitle("Void invoice");
@@ -185,5 +189,9 @@ public class DashboardController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public interface ProductUpdateListener {
+	    void onProductUpdated();
 	}
 }

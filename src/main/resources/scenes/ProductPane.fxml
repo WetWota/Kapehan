@@ -33,5 +33,6 @@
       <Label fx:id="modeLabel" layoutX="14.0" layoutY="22.0" text="Mode Label" />
       <Button fx:id="submitBTN" layoutX="209.0" layoutY="156.0" mnemonicParsing="false" onAction="#BTNAction" text="Button" />
       <ToggleButton fx:id="editToggle" layoutX="224.0" layoutY="18.0" mnemonicParsing="false" onAction="#editToggle" text="Edit" />
+      <Label fx:id="statusLabel" layoutX="14.0" layoutY="160.0" text="Status Label" />
    </children>
 </AnchorPane>
