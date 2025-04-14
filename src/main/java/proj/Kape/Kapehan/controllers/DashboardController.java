@@ -1,5 +1,6 @@
 package proj.Kape.Kapehan.controllers;
 
+import proj.Kape.Kapehan.utils.Receipt;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 
 public class DashboardController {
 	
+	private final Receipt receipt = new Receipt();
 	private ProductGridController productGridController;
 	private GridPane orderGrid;
 	private final List<InvoiceItemModel> orderItems = new ArrayList<>();
@@ -142,6 +144,7 @@ public class DashboardController {
 			} else {
 				Double change = cash - total;
 				changeField.setText(String.valueOf(change));
+				Receipt.generateReceipt(orderItems, total, cash, change, "receipt.pdf");
 				clearOrder();
 				showAlert("Invoice Created");
 			}
