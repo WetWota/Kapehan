@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.Kape.Kapehan.controllers.LoginController">
    <children>
-      <Pane layoutX="85.0" layoutY="98.0" prefHeight="250.0" prefWidth="444.0">
+      <Pane layoutX="78.0" layoutY="125.0" prefHeight="250.0" prefWidth="444.0">
          <children>
             <GridPane layoutX="108.0" layoutY="99.0" prefHeight="90.0" prefWidth="225.0">
               <columnConstraints>
@@ -36,7 +36,7 @@
                </children>
             </GridPane>
             <Button fx:id="loginBTN" layoutX="152.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
-            <Button fx:id="registerBTN" layoutX="222.0" layoutY="181.0" mnemonicParsing="false" text="Register" />
+            <Button fx:id="registerBTN" layoutX="222.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
             <Text layoutX="135.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AudaciTea" textAlignment="CENTER" wrappingWidth="283.0625">
                <font>
                   <Font name="Palatino Linotype Bold" size="52.0" />

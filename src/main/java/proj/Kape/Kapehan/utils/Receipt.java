@@ -19,7 +19,7 @@ public class Receipt {
     public static void generateReceipt(List<InvoiceItemModel> items, double total, double cash, double change, String filename) {
          // Create a PDF document
          Rectangle receiptSize = new Rectangle(150, 900);
-         Document document = new Document(receiptSize, 0, 0, 0, 0);
+         Document document = new Document(receiptSize, 0, 0, 0, 5);
 
         try {
             PdfWriter.getInstance(document, new FileOutputStream(filename));
@@ -29,7 +29,7 @@ public class Receipt {
             InputStream imageStream = Receipt.class.getResourceAsStream("/scenes/images/logo.png");
             if (imageStream != null) {
                 Image logo = Image.getInstance(imageStream.readAllBytes());
-                logo.scaleAbsolute(100, 100); // Resize the image
+                logo.scaleAbsolute(90, 100); // Resize the image
                 logo.setAlignment(Image.ALIGN_CENTER);
                 document.add(logo);
             } else {
@@ -81,17 +81,22 @@ public class Receipt {
 
             Font cellFont = new Font(Font.FontFamily.HELVETICA, 8);
 
-            for (InvoiceItemModel item : items) {
+            for (int i = 0; i < items.size(); i++) {
+                InvoiceItemModel item = items.get(i);
+                boolean isLast = i == items.size() - 1;
+
                 PdfPCell itemCell = new PdfPCell(new Phrase(item.getItemName(), cellFont));
                 PdfPCell qtyCell = new PdfPCell(new Phrase(String.valueOf(item.getQuantity()), cellFont));
                 PdfPCell priceCell = new PdfPCell(new Phrase("\u20b1" + item.getPrice(), cellFont));
                 PdfPCell subtotalCell = new PdfPCell(new Phrase("\u20b1" + item.getSubtotal(), cellFont));
 
-                itemCell.setBorder(Rectangle.NO_BORDER);
-                qtyCell.setBorder(Rectangle.NO_BORDER);
-                priceCell.setBorder(Rectangle.NO_BORDER);
-                subtotalCell.setBorder(Rectangle.NO_BORDER);
+                int borderStyle = isLast ? Rectangle.BOTTOM : Rectangle.NO_BORDER;
 
+                itemCell.setBorder(borderStyle);
+                qtyCell.setBorder(borderStyle);
+                priceCell.setBorder(borderStyle);
+                subtotalCell.setBorder(borderStyle);
+                
                 table.addCell(itemCell);
                 table.addCell(qtyCell);
                 table.addCell(priceCell);
@@ -100,17 +105,17 @@ public class Receipt {
 
             document.add(table);
             document.add(new Paragraph(" "));
-            document.add(new Paragraph("Total: \u20b1" + total,font));
-            document.add(new Paragraph("Cash: \u20b1" + cash,font));
-            document.add(new Paragraph("Change: \u20b1" + change,font));
+            document.add(new Paragraph("Total: \u20b1" + total,cellFont));
+            document.add(new Paragraph("Cash: \u20b1" + cash,cellFont));
+            document.add(new Paragraph("Change: \u20b1" + change,cellFont));
             document.add(separator);
             String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             Paragraph time = new Paragraph("Date: " + timestamp,font);
             time.setAlignment(Element.ALIGN_CENTER);
             document.add(time);
-            document.add(new Paragraph(" "));
 
-            Paragraph footer = new Paragraph("\nThank you for your purchase!\n\"Come again soon \u2615", font);
+            Paragraph footer = new Paragraph("\nThank you for your purchase!\nCome again soon \u2615", font);
+            footer.setAlignment(Element.ALIGN_CENTER);
             document.add(footer);
 
             document.close();
