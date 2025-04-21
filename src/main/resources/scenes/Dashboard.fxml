@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1366.0" stylesheets="@styles/Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.Kape.Kapehan.controllers.DashboardController">
    <children>
-      <Pane layoutX="-1.0" layoutY="-3.0" prefHeight="735.0" prefWidth="1374.0" style="-fx-background-color: lightgray;">
+      <Pane layoutX="-1.0" layoutY="-3.0" prefHeight="735.0" prefWidth="1374.0" style="-fx-background-color: #4A9C52;">
          <children>
             <Text layoutX="1165.0" layoutY="95.0" opacity="0.72" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Palatino Linotype; -fx-opacity: .9;" text="119 Armstrong Avenue Moonwalk Village Phase 1,Parañaque&#10;0916 572 0001&#10;audacitea.teastudio@gmail.com" textAlignment="CENTER" wrappingWidth="190.0">
                <font>

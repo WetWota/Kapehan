@@ -27,6 +27,7 @@
       </Label>
       <TextField fx:id="quantityField" alignment="CENTER" layoutX="93.0" layoutY="100.0" prefHeight="25.0" prefWidth="52.0" text="QTY" />
       <Button fx:id="addBTN" layoutX="100.0" layoutY="158.0" mnemonicParsing="false" onAction="#handleAdd" text="Add" />
+      <Label fx:id="productID" layoutX="14.0" layoutY="15.0" prefHeight="14.0" prefWidth="19.0" text="ID" />
 
    </children>
 </Pane>

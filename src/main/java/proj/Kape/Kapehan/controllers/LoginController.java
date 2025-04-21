@@ -64,32 +64,11 @@ public class LoginController {
 	
 	@FXML
 	private void handleRegister(ActionEvent event) {
-	    try {
-	        String username = usernameField.getText().trim();
-	        String password = passwordField.getText().trim();
-
-	        if (username.isEmpty() || password.isEmpty()) {
-	            showError("Fields cannot be empty!");
-	            return;
-	        }
-
-	        if (authService.userExists(username)) {
-	            showError("Username already exists.");
-	            return;
-	        }
-
-	        boolean success = authService.registerUser(username, password,"admin");
-
-	        if (success) {
-	            errorLabel.setStyle("-fx-text-fill: green;");
-	            errorLabel.setText("✅ Registration successful! You can now log in.");
-	        } else {
-	            showError("Registration failed. Try again.");
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        showError("An unexpected error occurred.");
-	    }
+		try {
+			SceneManager.switchSignup();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void showError(String message) {

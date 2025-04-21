@@ -50,5 +50,22 @@ public class SceneManager {
             System.out.println("❌ Failed to switch Login");
         }
     }
-
+    
+    public static void switchSignup() {
+        try {
+        	System.out.println("Trying to load: " + "/scenes/Signup.fxml");
+            FXMLLoader sceneLoader = new FXMLLoader(SceneManager.class.getResource("/scenes/Signup.fxml"));
+            Parent root = sceneLoader.load();
+            
+            if (primaryStage != null) {
+            	Scene newScene = new Scene(root, 600, 400);
+                primaryStage.setScene(newScene);
+            } else {
+                System.out.println("❌ Stage is null when switching to Login");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("❌ Failed to switch Login");
+        }
+    }
 }
