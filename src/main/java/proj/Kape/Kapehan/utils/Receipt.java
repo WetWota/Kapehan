@@ -3,6 +3,7 @@ package proj.Kape.Kapehan.utils;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import proj.Kape.Kapehan.models.InvoiceItemModel;
+import proj.Kape.Kapehan.controllers.LoginController;
 
 import java.io.InputStream;
 import java.io.IOException;
@@ -16,10 +17,13 @@ import java.util.Date;
 
 public class Receipt {
 
+	private final LoginController login = new LoginController();
+	
     public static void generateReceipt(List<InvoiceItemModel> items, double total, double cash, double change, String filename) {
          // Create a PDF document
          Rectangle receiptSize = new Rectangle(150, 900);
          Document document = new Document(receiptSize, 0, 0, 0, 5);
+         
 
         try {
             PdfWriter.getInstance(document, new FileOutputStream(filename));
@@ -49,12 +53,12 @@ public class Receipt {
             document.add(AdDits);
             Paragraph PonDits = new Paragraph("Phone: 0916 572 0001", dets);
             PonDits.setAlignment(Element.ALIGN_CENTER);
-            Paragraph UserDets = new Paragraph("Cashier: Admin", dets);
+            Paragraph UserDets = new Paragraph("Cashier: " + SessionManager.getUsername(), dets);
             Paragraph separator = new Paragraph("=============================", font);
             separator.setAlignment(Element.ALIGN_CENTER);
             UserDets.setAlignment(Element.ALIGN_CENTER);
             document.add(PonDits);
-            document.add(UserDets);
+            //document.add(UserDets);
             document.add(separator);
             
 

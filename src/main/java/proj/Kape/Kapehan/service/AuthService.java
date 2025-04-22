@@ -160,7 +160,7 @@ public class AuthService {
         return false;
     }    
     
-    /*public boolean register(String username, String password) {
+    public boolean register(String username, String password) {
         String query = "INSERT INTO account_data (username, password, role) VALUES (?, ?, ?)";
 
         try (Connection conn = DbConfig.getConnection();
@@ -168,7 +168,7 @@ public class AuthService {
 
             stmt.setString(1, username);
             stmt.setString(2, password); // 🔐 In production, hash the password!
-            stmt.setString(3, "cashier"); // or "admin" or however you want to set roles
+            stmt.setString(3, "admin"); // or "admin" or however you want to set roles
 
             return stmt.executeUpdate() > 0;
         } catch (Exception e) {
@@ -177,6 +177,6 @@ public class AuthService {
 
         return false;
     }
-    */
+    
 }
 

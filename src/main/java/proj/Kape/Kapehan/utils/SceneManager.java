@@ -68,4 +68,5 @@ public class SceneManager {
             System.out.println("❌ Failed to switch Login");
         }
     }
+    
 }

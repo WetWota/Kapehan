@@ -44,7 +44,7 @@
                         <Font name="Palatino Linotype Bold" size="52.0" />
                      </font>
                   </Text>
-                  <Label fx:id="errorLabel" alignment="CENTER" layoutX="149.0" layoutY="78.0" prefHeight="17.0" prefWidth="144.0" text="errorLabel" />
+                  <Label fx:id="errorLabel" alignment="CENTER" layoutX="98.0" layoutY="78.0" prefHeight="18.0" prefWidth="260.0" text="errorLabel" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="-72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/logo.png" />

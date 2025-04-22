@@ -1,6 +1,7 @@
 package proj.Kape.Kapehan.controllers;
 
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import proj.Kape.Kapehan.service.AuthService;
 import proj.Kape.Kapehan.utils.SceneManager;
+import proj.Kape.Kapehan.utils.SessionManager;
 public class LoginController {
 	private final AuthService authService = new AuthService();
 	
@@ -19,6 +21,7 @@ public class LoginController {
 	@FXML Button loginBTN;
 	@FXML Button registerBTN;
 	@FXML Label errorLabel;
+	@FXML Button bckLoginBTN;
 	
 	@FXML
 	private void initialize() {
@@ -52,6 +55,7 @@ public class LoginController {
                 System.out.println("✅ Login Successful! Redirecting...");
                 int accountId = authService.getAccountId(username);
                 String role = authService.getRole(username);
+                SessionManager.getUsername();
                 loadDashboard();
             } else {
                 showError("Invalid username or password.");
@@ -64,12 +68,35 @@ public class LoginController {
 	
 	@FXML
 	private void handleRegister(ActionEvent event) {
-		try {
-			SceneManager.switchSignup();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+	    try {
+	        String username = usernameField.getText().trim();
+	        String password = passwordField.getText().trim();
+
+	        if (username.isEmpty() || password.isEmpty()) {
+	            showError("Fields cannot be empty!");
+	            return;
+	        }
+
+	        if (authService.userExists(username)) {
+	            showError("Username already exists.");
+	            return;
+	        }
+
+	        boolean success = authService.registerUser(username, password,"admin");
+
+	        if (success) {
+	            errorLabel.setStyle("-fx-text-fill: green;");
+	            errorLabel.setText("✅ Registration successful! You can now log in.");
+	        } else {
+	            showError("Registration failed. Try again.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        showError("An unexpected error occurred.");
+	    }
 	}
+	
+	
 	
 	private void showError(String message) {
         errorLabel.setText("⚠️ " + message);
