@@ -15,9 +15,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4A9C52;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="38.0" layoutY="42.0" prefHeight="317.0" prefWidth="525.0" style="-fx-background-color: f0f0f0; -fx-background-radius: 60;">
+      <Pane layoutX="26.0" layoutY="24.0" prefHeight="349.0" prefWidth="543.0" style="-fx-background-color: f0f0f0; -fx-background-radius: 60;">
          <children>
-            <GridPane layoutX="141.0" layoutY="143.0" prefHeight="90.0" prefWidth="260.0">
+            <GridPane layoutX="136.0" layoutY="159.0" prefHeight="90.0" prefWidth="260.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.0" minWidth="10.0" prefWidth="105.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="117.0" />
@@ -36,15 +36,15 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <Button fx:id="bckLoginBTN" layoutX="182.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleBack" text="Back to Login" />
-            <Button layoutX="292.0" layoutY="251.0" mnemonicParsing="false" text="Register" />
-            <Text layoutX="240.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" />
-            <Text layoutX="171.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AudaciTea" textAlignment="CENTER" wrappingWidth="283.0625">
+            <Button fx:id="bckLoginBTN" layoutX="171.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleBack" text="Back to Login" />
+            <Button layoutX="281.0" layoutY="258.0" mnemonicParsing="false" onAction="#registerUser" text="Register" />
+            <Text fx:id="messageLabel" layoutX="240.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" />
+            <Text layoutX="170.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AudaciTea" textAlignment="CENTER" wrappingWidth="283.0625">
                <font>
                   <Font name="Palatino Linotype Bold" size="52.0" />
                </font>
             </Text>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="70.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logo.png" />
                </image>

@@ -17,7 +17,6 @@ import java.util.Date;
 
 public class Receipt {
 
-	private final LoginController login = new LoginController();
 	
     public static void generateReceipt(List<InvoiceItemModel> items, double total, double cash, double change, String filename) {
          // Create a PDF document
