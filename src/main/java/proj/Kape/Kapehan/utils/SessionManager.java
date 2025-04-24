@@ -12,6 +12,9 @@ public class SessionManager {
     }
 
     public static int getAccountId() {return accountId;}
+    public static void setUsername(String user) {
+        username = user;
+    }
     public static String getUsername() {return username;}
     public static String getRole() {return role;}
     

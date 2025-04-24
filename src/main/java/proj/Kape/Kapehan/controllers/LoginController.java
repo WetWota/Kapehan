@@ -75,7 +75,7 @@ public class LoginController {
                 failedAttempts = 0; // reset attempts
                 int accountId = authService.getAccountId(username);
                 String role = authService.getRole(username);
-                SessionManager.getUsername();
+                SessionManager.setUsername(usernameField.getText());
                 loadDashboard();
             } else {
                 failedAttempts++;

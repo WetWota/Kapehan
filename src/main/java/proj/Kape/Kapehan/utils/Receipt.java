@@ -57,7 +57,7 @@ public class Receipt {
             separator.setAlignment(Element.ALIGN_CENTER);
             UserDets.setAlignment(Element.ALIGN_CENTER);
             document.add(PonDits);
-            //document.add(UserDets);
+            document.add(UserDets);
             document.add(separator);
             
 

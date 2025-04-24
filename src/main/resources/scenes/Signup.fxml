@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4A9C52;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4A9C52;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.Kape.Kapehan.controllers.SignupController">
    <children>
       <Pane layoutX="26.0" layoutY="24.0" prefHeight="349.0" prefWidth="543.0" style="-fx-background-color: f0f0f0; -fx-background-radius: 60;">
          <children>
@@ -28,17 +29,16 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField prefHeight="25.0" prefWidth="137.0" GridPane.columnIndex="1" />
-                  <PasswordField prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="137.0" GridPane.columnIndex="1" />
+                  <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" GridPane.rowIndex="1" />
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <PasswordField fx:id="confirmPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <Button fx:id="bckLoginBTN" layoutX="171.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleBack" text="Back to Login" />
             <Button layoutX="281.0" layoutY="258.0" mnemonicParsing="false" onAction="#registerUser" text="Register" />
-            <Text fx:id="messageLabel" layoutX="240.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" />
             <Text layoutX="170.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AudaciTea" textAlignment="CENTER" wrappingWidth="283.0625">
                <font>
                   <Font name="Palatino Linotype Bold" size="52.0" />
@@ -49,6 +49,7 @@
                   <Image url="@images/logo.png" />
                </image>
             </ImageView>
+            <Label fx:id="messageLabel" alignment="CENTER" layoutX="178.0" layoutY="121.0" prefHeight="18.0" prefWidth="260.0" text="Sign Up" textAlignment="CENTER" />
          </children>
       </Pane>
    </children>
