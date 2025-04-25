@@ -38,12 +38,26 @@ public class ProductPaneController {
 	}
 	
 	@FXML
-	private void idFieldAction() {
+	private void idFieldAction(ActionEvent event) {
+		try {
+			ProductModel productModel = productService.getProductById(Integer.parseInt(idField.getText().trim()));
+			if(productModel != null) {
+				nameField.setText(productModel.getProductName());
+				priceField.setText(String.valueOf(productModel.getPrice()));
+				statusLabel.setText(null);
+			} else {
+				statusLabel.setText("Does not exist");
+				nameField.setText(null);
+				priceField.setText(null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		nameField.requestFocus();
 	}
 	
 	@FXML
-	private void nameFieldAction() {
+	private void nameFieldAction(ActionEvent event) {
 		priceField.requestFocus();
 	}
 	
@@ -87,6 +101,26 @@ public class ProductPaneController {
 			if (productUpdateListener != null) {
 	            productUpdateListener.onProductUpdated();
 	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void handleDelete(ActionEvent event) {
+		try {
+			ProductModel productModel = productService.getProductById(Integer.parseInt(idField.getText().trim()));
+			if(productModel != null) {
+				productService.deleteProduct(productModel.getProductId());
+				statusLabel.setText(productModel.getProductName() + " deleted");
+			} else {
+				statusLabel.setText("Invalid");
+			}
+			if (productUpdateListener != null) {
+	            productUpdateListener.onProductUpdated();
+	        }
+			int id = Integer.parseInt(idField.getText());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

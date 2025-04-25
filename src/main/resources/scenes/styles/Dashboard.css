@@ -29,7 +29,7 @@
     -fx-background-color: #3498db;
 }
 #CompDets{
-        -fx-wrap-text: true;
+    -fx-wrap-text: true;
 }
 
 #MOP {

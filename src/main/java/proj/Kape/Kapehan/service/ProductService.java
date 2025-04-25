@@ -99,15 +99,49 @@ public class ProductService {
     }
 
     public boolean deleteProduct(int productId) {
-        String sql = "DELETE FROM products WHERE product_id = ?";
-        try (Connection conn = DbConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, productId);
-            int affectedRows = stmt.executeUpdate();
-            return affectedRows > 0;
+        Connection conn = null;
+        try {
+            conn = DbConfig.getConnection();
+            conn.setAutoCommit(false); // Start transaction
+            
+            // First delete related invoice items
+            String deleteItemsSql = "DELETE FROM invoice_items WHERE product_id = ?";
+            try (PreparedStatement itemsStmt = conn.prepareStatement(deleteItemsSql)) {
+                itemsStmt.setInt(1, productId);
+                itemsStmt.executeUpdate();
+            }
+            
+            // Then delete the product
+            String deleteProductSql = "DELETE FROM products WHERE product_id = ?";
+            try (PreparedStatement productStmt = conn.prepareStatement(deleteProductSql)) {
+                productStmt.setInt(1, productId);
+                int affectedRows = productStmt.executeUpdate();
+                
+                if (affectedRows > 0) {
+                    conn.commit(); // Commit transaction if successful
+                    return true;
+                }
+                return false;
+            }
         } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Rollback on error
+                } catch (SQLException ex) {
+                    System.out.println("❌ Rollback failed: " + ex.getMessage());
+                }
+            }
             System.out.println("❌ Database error: " + e.getMessage());
             return false;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Reset auto-commit
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("❌ Connection close error: " + e.getMessage());
+                }
+            }
         }
     }
 }

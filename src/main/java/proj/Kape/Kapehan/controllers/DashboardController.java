@@ -1,6 +1,10 @@
+
 package proj.Kape.Kapehan.controllers;
 
+import proj.Kape.Kapehan.utils.Receipt;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import proj.Kape.Kapehan.models.InvoiceItemModel;
+import proj.Kape.Kapehan.models.InvoiceModel;
+import proj.Kape.Kapehan.models.ProductModel;
+import proj.Kape.Kapehan.service.InvoiceService;
+import proj.Kape.Kapehan.service.ProductService;
 import proj.Kape.Kapehan.utils.SceneManager;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,6 +28,7 @@ import javafx.stage.Stage;
 
 public class DashboardController {
 	
+	private final Receipt receipt = new Receipt();
 	private ProductGridController productGridController;
 	private GridPane orderGrid;
 	private final List<InvoiceItemModel> orderItems = new ArrayList<>();
@@ -134,22 +143,63 @@ public class DashboardController {
 	
 	@FXML
 	private void handleSubmit(ActionEvent event) {
-		try {
-			Double cash = Double.parseDouble(cashField.getText());
-			Double total = Double.parseDouble(totalField.getText());
-			if(total > cash) {
-				showAlert("invalid");
-			} else {
-				Double change = cash - total;
-				changeField.setText(String.valueOf(change));
-				clearOrder();
-				showAlert("Invoice Created");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	    try {
+	        Double cash = Double.parseDouble(cashField.getText());
+	        Double total = Double.parseDouble(totalField.getText());
+	        
+	        if(total > cash) {
+	            showAlert("Insufficient cash");
+	            return;
+	        }
+	        
+	        // Create and save the invoice
+	        InvoiceModel invoice = createInvoiceFromCurrentOrder();
+	        InvoiceService invoiceService = new InvoiceService();
+	        int invoiceId = invoiceService.createInvoice(invoice);
+	        
+	        if(invoiceId != -1) {
+	            // Save all invoice items
+	            for(InvoiceItemModel item : orderItems) {
+	                item.setInvoiceId(invoiceId);
+	                invoiceService.addInvoiceItem(item);
+	            }
+	            
+	            Double change = cash - total;
+	            changeField.setText(String.valueOf(change));
+	            clearOrder();
+	            showAlert("Invoice #" + invoiceId + " created successfully");
+	        } else {
+	            showAlert("Failed to create invoice");
+	        }
+	    } catch (NumberFormatException e) {
+	        showAlert("Please enter valid amounts");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        showAlert("Error creating invoice");
+	    }
+	}
+
+
+	private InvoiceModel createInvoiceFromCurrentOrder() {
+	    InvoiceModel invoice = new InvoiceModel();
+	    invoice.setTransactionDate(LocalDate.now());
+	    invoice.setTransactionTime(LocalTime.now());
+	    invoice.setTotal(new BigDecimal(totalField.getText()));
+	    invoice.setItems(new ArrayList<>(orderItems));
+	    
+	    ProductService productService = new ProductService();
+	    for(InvoiceItemModel item : invoice.getItems()) {
+	        ProductModel product = productService.getProductById(item.getProductId());
+	        if(product != null) {
+	            item.setItemName(product.getProductName());
+	            item.setPrice(product.getPrice());
+	        }
+	    }
+	    
+	    return invoice;
 	}
 	
+	@FXML
 	private void clearOrder(){
 		orderItems.clear();
 		orderGrid.getChildren().clear();

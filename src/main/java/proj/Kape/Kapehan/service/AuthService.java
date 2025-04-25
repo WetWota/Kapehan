@@ -140,4 +140,43 @@ public class AuthService {
         }
         return false;
     }
+    
+    public boolean userExists(String username) {
+        String query = "SELECT COUNT(*) FROM account_data WHERE username = ?";
+
+        try (Connection conn = DbConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }    
+    
+    public boolean register(String username, String password) {
+        String query = "INSERT INTO account_data (username, password, role) VALUES (?, ?, ?)";
+
+        try (Connection conn = DbConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, username);
+            stmt.setString(2, password); // 🔐 In production, hash the password!
+            stmt.setString(3, "admin"); // or "admin" or however you want to set roles
+
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    
 }
+
