@@ -28,7 +28,7 @@
       <HBox fx:id="menuList" layoutX="14.0" layoutY="638.0" prefHeight="76.0" prefWidth="941.0">
          <children>
             <Button fx:id="productBTN" mnemonicParsing="false" onAction="#productManager" text="Product Manager" />
-            <Button fx:id="voidMenuBTN" mnemonicParsing="false" text="Void" />
+            <Button fx:id="voidMenuBTN" mnemonicParsing="false" onAction="#clearOrder" text="Void" />
             <Button fx:id="logoutBTN" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
          </children>
       </HBox>

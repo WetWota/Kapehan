@@ -7,9 +7,21 @@ import proj.Kape.Kapehan.controllers.LoginController;
 
 import java.io.InputStream;
 import java.io.IOException;
+import java.awt.print.Book;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.PrinterJob;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.List;
+
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPrintable;
+import org.apache.pdfbox.printing.Scaling;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -126,4 +138,55 @@ public class Receipt {
             e.printStackTrace();
         }
     }
+    
+    private void autoPrintPDF(String fileName) {
+        try {
+            PDDocument document = PDDocument.load(new File(fileName));
+            PrinterJob job = PrinterJob.getPrinterJob();
+
+            // Find your printer (you can match name if needed)
+            PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
+            for (PrintService ps : services) {
+                if (ps.getName().toLowerCase().contains("your_printer_name".toLowerCase())) {
+                    job.setPrintService(ps);
+                    break;
+                }
+            }
+
+            // Fallback if none matched
+            if (job.getPrintService() == null) {
+                job.setPrintService(PrintServiceLookup.lookupDefaultPrintService());
+            }
+
+            PDFPrintable printable = new PDFPrintable(document, Scaling.SHRINK_TO_FIT);
+
+            Paper paper = new Paper();
+
+		     double paperWidth = 164; // 58mm in points
+		     double paperHeight = 1000; // Height (arbitrary)
+		
+		     double rightMargin = 28.35; // 10mm margin
+		
+		     paper.setSize(paperWidth, paperHeight);
+		     paper.setImageableArea(0, 0, paperWidth - rightMargin, paperHeight); // Adjust width to leave right margin
+
+
+            PageFormat format = new PageFormat();
+            format.setPaper(paper);
+            format.setOrientation(PageFormat.PORTRAIT);
+
+            Book book = new Book();
+            book.append(printable, format, document.getNumberOfPages());
+
+            job.setPageable(book);
+            job.print();
+
+            document.close();
+            System.out.println("Printed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error printing the PDF.");
+        }
+    }
+
 }

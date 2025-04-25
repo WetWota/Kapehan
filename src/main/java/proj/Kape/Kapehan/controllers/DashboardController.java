@@ -153,6 +153,7 @@ public class DashboardController {
 		}
 	}
 	
+	@FXML
 	private void clearOrder(){
 		orderItems.clear();
 		orderGrid.getChildren().clear();
