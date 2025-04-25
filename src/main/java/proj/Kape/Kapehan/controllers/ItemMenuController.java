@@ -11,7 +11,6 @@ import proj.Kape.Kapehan.models.ProductModel;
 import java.math.BigDecimal;
 
 public class ItemMenuController {
-	@FXML private Label productId;
     @FXML private Label productName;
     @FXML private Label productPrice;
     @FXML private TextField quantityField;
@@ -43,7 +42,6 @@ public class ItemMenuController {
 
     private void updateDisplay() {
         if (product != null) {
-        	productId.setText(String.format("%d",product.getProductId()));
             productName.setText(product.getProductName());
             productPrice.setText(String.format("₱%.2f", product.getPrice()));
             quantityField.setText(String.valueOf(quantity));
